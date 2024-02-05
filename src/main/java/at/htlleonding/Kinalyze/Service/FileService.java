@@ -1,4 +1,6 @@
 package at.htlleonding.Kinalyze.Service;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Arrays;
@@ -135,6 +137,92 @@ public class FileService{
                             "Anzahl der Operatoren: %d\n" +
                             "Komplexitätsbewertung: %.2f",
                     functionCount, maxNestingDepth, loopCount, decisionPoints, operatorCount, score);
+        }
+    }
+
+    // Einrückung check
+    public static class IndentationAnalyzer{
+        public static boolean checkIndentation(String code) {
+            int spaces = 0;
+            boolean isChecked = false;
+
+            List<String> codeLines = new ArrayList<>();
+            String[] newCode = code.split("\n");
+
+            for (String line : newCode) {
+                codeLines.add(line);
+            }
+
+            for (String line : codeLines) {
+                System.out.println(spaces + ":    " + line);
+
+                if (line.contains("}")) {
+                    spaces -= 4;
+                }
+
+                if (line.trim().isEmpty() || line.substring(0, Math.min(spaces, line.length())).trim().isEmpty()) {
+                    isChecked = true;
+                } else {
+                    return false;
+                }
+
+                if (line.contains("{")) {
+                    spaces += 4;
+                }
+            }
+            return isChecked;
+        }
+    }
+
+    public static class CommentAnalyzer{
+        public static String analyzeComments(String code){
+            int count = 0;
+            boolean isWhole = true;
+            int wholeCount = 0;
+            float rate = 0;
+            int totalCount = 0;
+
+            List<String> lines = List.of(code.split("\n"));
+
+            for (String line: lines){
+                line = line.trim();
+                if(!line.equals("")){
+                    if(line.charAt(0) == '/' && line.charAt(1) == '*'){
+                        isWhole = true;
+                        count = wholeCount;
+                        totalCount += count;
+
+                    }else if (line.charAt(0) == '/' && line.charAt(1) == '/' && line.charAt(2) == '/' && line.charAt(4) != '<'){
+                        isWhole = false;
+                        count = countChars(lines, isWhole, line);
+                        totalCount += count;
+
+                    }else if(line.charAt(0) == '/' && line.charAt(1) == '/' && line.charAt(2) != '/'){
+                        isWhole = false;
+                        count = countChars(lines, isWhole, line);
+                        totalCount += count;
+                    }
+                }
+            }
+
+            rate = ((float) totalCount / (float) wholeCount) * 100;
+            int intRate = (int) (rate * 100);
+            rate =  (float) intRate / 100;
+            return String.format("count: %d \n", totalCount) + String.format("Whole count: %d \n", wholeCount) +
+                    String.format("Rate: %d%%", Math.round(rate * 100) / 100);
+        }
+
+        private static int countChars(List<String> lines, boolean whole, String line){
+            int count = 0;
+
+            if(whole){
+                for(String s: lines){
+                    count += s.length();
+                }
+            }else{
+                count = line.length();
+            }
+            return count;
         }
     }
 }
