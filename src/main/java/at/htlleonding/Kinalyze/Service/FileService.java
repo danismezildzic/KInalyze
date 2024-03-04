@@ -1,11 +1,29 @@
 package at.htlleonding.Kinalyze.Service;
+import at.htlleonding.Kinalyze.Entity.FileEntity;
+import at.htlleonding.Kinalyze.Repository.FileEntityRepository;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Arrays;
 
+@Service
 public class FileService{
+
+    private final FileEntityRepository fileEntityRepository;
+    public FileService(FileEntityRepository fileEntityRepository) {
+        this.fileEntityRepository = fileEntityRepository;
+    }
+
+    public FileEntity getFileByIdAndFileName(String fileId, String fileName) {
+        return fileEntityRepository.findByIdAndFileName(fileId, fileName);
+    }
+
+    public List<FileEntity> getAllFiles() {
+        return (List<FileEntity>) fileEntityRepository.findAll();
+    }
 
     public static class NamingConventionAnalyzer {
         public static String analyzeCodeNamingConventions(String code) {
