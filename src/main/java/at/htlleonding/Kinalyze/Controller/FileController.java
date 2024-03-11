@@ -5,6 +5,12 @@ import at.htlleonding.Kinalyze.Service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import java.util.List;
 
@@ -19,8 +25,17 @@ public class FileController {
     }
 
     @PostMapping("/upload/{uuid}/{fileName}")
-    public ResponseEntity<String> uploadFile(@PathVariable String uuid, @PathVariable String fileName) {
+    public ResponseEntity<String> uploadFile(@PathVariable String uuid, @PathVariable String fileName, @RequestParam("file") MultipartFile file) {
         // Implement your file upload logic here
+        String fileContent = null;
+        try {
+            fileContent = new String(file.getBytes(), StandardCharsets.US_ASCII);
+        }
+        catch (java.io.IOException e) {
+            return ResponseEntity.badRequest().body("Invalid file");
+        }
+        System.out.println("File content: " + fileContent);
+
         return ResponseEntity.ok("File uploaded successfully");
     }
 
