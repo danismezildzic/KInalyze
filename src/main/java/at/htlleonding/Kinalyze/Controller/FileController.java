@@ -17,33 +17,21 @@ public class FileController {
     public FileController(FileService fileEntityService) {
         this.fileEntityService = fileEntityService;
     }
-    @PostMapping("/upload/{userId}/{fileName}")
-    public ResponseEntity<String> uploadFile(@PathVariable String userId, @PathVariable String fileName) {
 
+    @PostMapping("/upload/{uuid}/{fileName}")
+    public ResponseEntity<String> uploadFile(@PathVariable String uuid, @PathVariable String fileName) {
+        // Implement your file upload logic here
         return ResponseEntity.ok("File uploaded successfully");
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<FileEntity>> getAllFiles() {
-        List<FileEntity> allFiles = fileEntityService.getAllFiles();
-
+        List<FileEntity> allFiles = fileEntityService.getAll();
+        System.out.println(allFiles);
         if (!allFiles.isEmpty()) {
             return ResponseEntity.ok(allFiles);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/{id}/{fileName}")
-    public ResponseEntity<FileEntity> getFileByIdAndFileName(
-            @PathVariable String id,
-            @PathVariable String fileName) {
-        FileEntity fileEntity = fileEntityService.getFileByIdAndFileName(id, fileName);
-
-        if (fileEntity != null) {
-            return ResponseEntity.ok(fileEntity);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
 }
