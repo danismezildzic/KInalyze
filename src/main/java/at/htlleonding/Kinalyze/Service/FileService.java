@@ -12,13 +12,16 @@ public class FileService {
 
     private final FileEntityRepository fileEntityRepository;
 
-    @Autowired
     public FileService(FileEntityRepository fileEntityRepository) {
         this.fileEntityRepository = fileEntityRepository;
     }
 
     public List<FileEntity> getAll() {
-        return fileEntityRepository.findAll();
+        return fileEntityRepository.findAllEntities();
+    }
+
+    public void saveFileEntity(FileEntity fileEntity) {
+        fileEntityRepository.save(fileEntity);
     }
 
 }

@@ -17,7 +17,7 @@ class IndentationAnalyzerTest {
     }
 
     @Test
-    void checkIndentation_CorrectIndentation() {
+    void    checkIndentation_CorrectIndentation() {
         String code = "public class Sample {\n" +
                 "    public void method() {\n" +
                 "        if (true) {\n" +

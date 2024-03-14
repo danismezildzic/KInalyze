@@ -8,5 +8,9 @@ import java.util.List;
 
 public interface FileEntityRepository extends CrudRepository<FileEntity, String> {
 
-    List<FileEntity> findAll();
+    @Query("SELECT f FROM FileEntity f")
+    List<FileEntity> findAllEntities();
+
+    @Override
+    <S extends FileEntity> S save(S entity);
 }
