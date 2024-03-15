@@ -44,7 +44,7 @@ public class FileEntity {
         this.indents = indents;
     }
 
-    public void setComplex(int complex) {
+    public void setComplex(String complex) {
         this.complex = complex;
     }
 
@@ -108,7 +108,7 @@ public class FileEntity {
         return indents;
     }
 
-    public int getComplex() {
+    public String getComplex() {
         return complex;
     }
 
@@ -159,7 +159,7 @@ public class FileEntity {
 
     private boolean indents;
 
-    private int complex;
+    private String complex;
 
     private int data_type;
 
@@ -181,14 +181,15 @@ public class FileEntity {
     private String naming_convs;
 
     private String performance;
+   /// private double lineMethodRatio;
 
     public FileEntity() {
     }
 
     public FileEntity(String user_uid, String fileName, String fileType, Long fileSize, String fileContent, String fileLang,
-                      int varEng, boolean indents, int complex, int dataType, int badInits,
+                      int varEng, boolean indents, String complex, int dataType, int badInits,
                       String badPracs, String comments, String constructs, String unreadables,
-                      String namingConvs, String performance) {
+                      String namingConvs, String performance, double lineMethodRatio) {
         this.user_uid = user_uid;
         this.file_name = fileName;
         this.file_type = fileType;
@@ -206,6 +207,7 @@ public class FileEntity {
         this.unreadables = unreadables;
         this.naming_convs = namingConvs;
         this.performance = performance;
+       // this.lineMethodRatio = lineMethodRatio;
     }
 
     @Override
@@ -228,6 +230,7 @@ public class FileEntity {
                 ", unreadables='" + unreadables + '\'' +
                 ", naming_convs='" + naming_convs + '\'' +
                 ", performance='" + performance + '\'' +
+               // ", lineRatio='" + lineMethodRatio + '\'' +
                 '}';
     }
 }
