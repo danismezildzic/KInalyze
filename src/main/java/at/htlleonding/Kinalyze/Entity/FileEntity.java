@@ -3,10 +3,14 @@ package at.htlleonding.Kinalyze.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "KIN_DB")
+@Table(name = "FILE_ATTRIBUTES")
 public class FileEntity {
     @Id
     private String user_uid;
+
+    public FileEntity() {
+
+    }
 
     public String getUser_uid() {
         return user_uid;
@@ -36,50 +40,6 @@ public class FileEntity {
         this.file_lang = file_lang;
     }
 
-    public void setVar_eng(int var_eng) {
-        this.var_eng = var_eng;
-    }
-
-    public void setIndents(boolean indents) {
-        this.indents = indents;
-    }
-
-    public void setComplex(String complex) {
-        this.complex = complex;
-    }
-
-    public void setData_type(int data_type) {
-        this.data_type = data_type;
-    }
-
-    public void setBad_inits(int bad_inits) {
-        this.bad_inits = bad_inits;
-    }
-
-    public void setBad_pracs(String bad_pracs) {
-        this.bad_pracs = bad_pracs;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public void setConstructs(String constructs) {
-        this.constructs = constructs;
-    }
-
-    public void setUnreadables(String unreadables) {
-        this.unreadables = unreadables;
-    }
-
-    public void setNaming_convs(String naming_convs) {
-        this.naming_convs = naming_convs;
-    }
-
-    public void setPerformance(String performance) {
-        this.performance = performance;
-    }
-
     public String getFile_name() {
         return file_name;
     }
@@ -98,50 +58,6 @@ public class FileEntity {
 
     public String getFile_lang() {
         return file_lang;
-    }
-
-    public int getVar_eng() {
-        return var_eng;
-    }
-
-    public boolean isIndents() {
-        return indents;
-    }
-
-    public String getComplex() {
-        return complex;
-    }
-
-    public int getData_type() {
-        return data_type;
-    }
-
-    public int getBad_inits() {
-        return bad_inits;
-    }
-
-    public String getBad_pracs() {
-        return bad_pracs;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public String getConstructs() {
-        return constructs;
-    }
-
-    public String getUnreadables() {
-        return unreadables;
-    }
-
-    public String getNaming_convs() {
-        return naming_convs;
-    }
-
-    public String getPerformance() {
-        return performance;
     }
 
     private String file_name;
@@ -183,30 +99,14 @@ public class FileEntity {
     private String performance;
    /// private double lineMethodRatio;
 
-    public FileEntity() {
-    }
 
-    public FileEntity(String user_uid, String fileName, String fileType, Long fileSize, String fileContent, String fileLang,
-                      int varEng, boolean indents, String complex, int dataType, int badInits,
-                      String badPracs, String comments, String constructs, String unreadables,
-                      String namingConvs, String performance, double lineMethodRatio) {
+    public FileEntity(String user_uid, String fileName, String fileType, Long fileSize, String fileContent, String fileLang){
         this.user_uid = user_uid;
         this.file_name = fileName;
         this.file_type = fileType;
         this.file_size = fileSize;
         this.file_content = fileContent;
         this.file_lang = fileLang;
-        this.var_eng = varEng;
-        this.indents = indents;
-        this.complex = complex;
-        this.data_type = dataType;
-        this.bad_inits = badInits;
-        this.bad_pracs = badPracs;
-        this.comments = comments;
-        this.constructs = constructs;
-        this.unreadables = unreadables;
-        this.naming_convs = namingConvs;
-        this.performance = performance;
        // this.lineMethodRatio = lineMethodRatio;
     }
 
@@ -219,18 +119,6 @@ public class FileEntity {
                 ", file_size=" + file_size +
                 ", file_content='" + file_content + '\'' +
                 ", file_lang='" + file_lang + '\'' +
-                ", var_eng=" + var_eng +
-                ", indents=" + indents +
-                ", complex=" + complex +
-                ", data_type=" + data_type +
-                ", bad_inits=" + bad_inits +
-                ", bad_pracs='" + bad_pracs + '\'' +
-                ", comments='" + comments + '\'' +
-                ", constructs='" + constructs + '\'' +
-                ", unreadables='" + unreadables + '\'' +
-                ", naming_convs='" + naming_convs + '\'' +
-                ", performance='" + performance + '\'' +
-               // ", lineRatio='" + lineMethodRatio + '\'' +
                 '}';
     }
 }
