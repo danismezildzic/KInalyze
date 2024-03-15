@@ -40,7 +40,7 @@ public class FileEntity {
         this.var_eng = var_eng;
     }
 
-    public void setIndents(boolean indents) {
+    public void setIndents(String indents) {
         this.indents = indents;
     }
 
@@ -104,7 +104,7 @@ public class FileEntity {
         return var_eng;
     }
 
-    public boolean isIndents() {
+    public String isIndents() {
         return indents;
     }
 
@@ -157,7 +157,7 @@ public class FileEntity {
 
     private int var_eng;
 
-    private boolean indents;
+    private String indents;
 
     private String complex;
 
@@ -187,7 +187,7 @@ public class FileEntity {
     }
 
     public FileEntity(String user_uid, String fileName, String fileType, Long fileSize, String fileContent, String fileLang,
-                      int varEng, boolean indents, String complex, int dataType, int badInits,
+                      int varEng, String indents, String complex, int dataType, int badInits,
                       String badPracs, String comments, String constructs, String unreadables,
                       String namingConvs, String performance, double lineMethodRatio) {
         this.user_uid = user_uid;

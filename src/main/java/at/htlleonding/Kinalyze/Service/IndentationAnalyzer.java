@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 import java.util.Arrays;
 
 public class IndentationAnalyzer{
-    public static boolean checkIndentation(String code) {
+    public static String checkIndentation(String code) {
         int spaces = 0;
-        boolean isChecked = false;
+        String isChecked = "False";
 
         List<String> codeLines = new ArrayList<>();
         String[] newCode = code.split("\n");
@@ -29,9 +29,9 @@ public class IndentationAnalyzer{
             }
 
             if (line.trim().isEmpty() || line.substring(0, Math.min(spaces, line.length())).trim().isEmpty()) {
-                isChecked = true;
+                isChecked = "True";
             } else {
-                return false;
+                return "False";
             }
 
             if (line.contains("{")) {

@@ -22,6 +22,7 @@ public class FileController {
     public ResponseEntity<String> uploadFile(@RequestBody FileEntity requestBody, @PathVariable String uuid, @PathVariable String fileName) {
         System.out.println(requestBody.toString());
         fileEntityService.saveFileEntity(requestBody);
+
         return ResponseEntity.ok(requestBody.toString());
     }
 
