@@ -13,7 +13,8 @@ public class AnalyzedDataEntity {
 
     @Id
     private String file_name;
-    private int var_eng;
+
+    private int VAR_ENG;
 
     private boolean indents;
 
@@ -46,7 +47,7 @@ public class AnalyzedDataEntity {
                       String namingConvs, String performance, double lineMethodRatio) {
         this.user_uid = user_uid;
         this.file_name = fileName;
-        this.var_eng = varEng;
+        this.VAR_ENG = varEng;
         this.indents = indents;
         this.complex = complex;
         this.data_type = dataType;
@@ -67,7 +68,7 @@ public class AnalyzedDataEntity {
         return "FileEntity{" +
                 "user_uid='" + user_uid + '\'' +
                 ", file_name='" + file_name + '\'' +
-                ", var_eng=" + var_eng +
+                ", var_eng=" + VAR_ENG +
                 ", indents=" + indents +
                 ", complex=" + complex +
                 ", data_type=" + data_type +

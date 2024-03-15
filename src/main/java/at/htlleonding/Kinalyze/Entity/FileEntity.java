@@ -107,7 +107,6 @@ public class FileEntity {
         this.file_size = fileSize;
         this.file_content = fileContent;
         this.file_lang = fileLang;
-       // this.lineMethodRatio = lineMethodRatio;
     }
 
     @Override
