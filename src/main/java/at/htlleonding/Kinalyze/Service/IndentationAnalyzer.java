@@ -9,17 +9,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Arrays;
 
-public class IndentationAnalyzer{
+public class IndentationAnalyzer {
     public static String checkIndentation(String code) {
         int spaces = 0;
         String isChecked = "False";
 
-        List<String> codeLines = new ArrayList<>();
-        String[] newCode = code.split("\n");
-
-        for (String line : newCode) {
-            codeLines.add(line);
-        }
+        List<String> codeLines = new ArrayList<>(Arrays.asList(code.split("\n")));
 
         for (String line : codeLines) {
             System.out.println(spaces + ":    " + line);
@@ -28,7 +23,7 @@ public class IndentationAnalyzer{
                 spaces -= 4;
             }
 
-            if (line.trim().isEmpty() || line.substring(0, Math.min(spaces, line.length())).trim().isEmpty()) {
+            if (line.trim().isEmpty() || (spaces > 0 && line.substring(0, Math.min(spaces, line.length())).trim().isEmpty())) {
                 isChecked = "True";
             } else {
                 return "False";
@@ -41,3 +36,4 @@ public class IndentationAnalyzer{
         return isChecked;
     }
 }
+

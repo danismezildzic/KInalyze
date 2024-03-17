@@ -12,7 +12,7 @@ public class AnalyzeAll {
     private String file_content;
     private AnalyzedDataEntity analyzedCode;
 
-    public AnalyzedDataEntity getAalyzedCode() {
+    public AnalyzedDataEntity getAnalyzedCode() {
         return analyzedCode;
     }
     public AnalyzeAll(String user_id, String file_name, String file_type, Long file_size, String file_content){
@@ -24,9 +24,9 @@ public class AnalyzeAll {
         analyzedCode =  analyzedData(file_content);
     }
     public AnalyzedDataEntity analyzedData(String code){
-        int data_type = 0; //Funktion not implemented yet
+        int data_type = LiteralsAndConstantsAnalyzer.countLiteralsAndConstants(file_content).getFirst(); //Funktion not implemented yet
         String constructs = ""; //Funktion not implemented yet
-        String unreadables = ""; //Funktion not implemented yet
+        String unreadables =  ""; //Funktion not implemented yet
         return new AnalyzedDataEntity(user_id, file_name,
                 LanguageAnalyzer.analyzeLanguage(file_content), IndentationAnalyzer.checkIndentation(file_content), ComplexityAnalyzer.analyzeCodeComplexity(file_content),
                 data_type, BadInitsAnalyzer.analyzeCode(file_content), BadPracticeAnalyzer.analyzeCode(file_content), CommentAnalyzer.analyzeComments(file_content),

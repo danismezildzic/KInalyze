@@ -1,48 +1,50 @@
 package at.htlleonding.Kinalyze.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ANALYZED_DATA")
 public class AnalyzedDataEntity {
     @Id
     private String user_uid;
-
-    @Id
     private String file_name;
 
     private int VAR_ENG;
 
     private String indents;
 
-    private String complex;
+    private double complex;
 
     private int data_type;
 
     private int bad_inits;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String bad_pracs;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String comments;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String constructs;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String unreadables;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String naming_convs;
 
     private String performance;
 
+    private double linemethodratio;
+
     public AnalyzedDataEntity(String user_uid, String fileName,
-                      int varEng, String indents, String complex, int dataType, int badInits,
+                      int varEng, String indents, double complex, int dataType, int badInits,
                       String badPracs, String comments, String constructs, String unreadables,
                       String namingConvs, String performance, double lineMethodRatio) {
         this.user_uid = user_uid;
@@ -58,28 +60,10 @@ public class AnalyzedDataEntity {
         this.unreadables = unreadables;
         this.naming_convs = namingConvs;
         this.performance = performance;
+        this.linemethodratio = lineMethodRatio;
     }
     public AnalyzedDataEntity() {
 
-    }
-
-    @Override
-    public String toString() {
-        return "FileEntity{" +
-                "user_uid='" + user_uid + '\'' +
-                ", file_name='" + file_name + '\'' +
-                ", var_eng=" + VAR_ENG +
-                ", indents=" + indents +
-                ", complex=" + complex +
-                ", data_type=" + data_type +
-                ", bad_inits=" + bad_inits +
-                ", bad_pracs='" + bad_pracs + '\'' +
-                ", comments='" + comments + '\'' +
-                ", constructs='" + constructs + '\'' +
-                ", unreadables='" + unreadables + '\'' +
-                ", naming_convs='" + naming_convs + '\'' +
-                ", performance='" + performance + '\'' +
-                '}';
     }
 
     public String getUser_uid() {
@@ -98,7 +82,7 @@ public class AnalyzedDataEntity {
         return indents;
     }
 
-    public String getComplex() {
+    public double getComplex() {
         return complex;
     }
 
@@ -132,5 +116,29 @@ public class AnalyzedDataEntity {
 
     public String getPerformance() {
         return performance;
+    }
+
+    public double getLinemethodratio() {
+        return linemethodratio;
+    }
+
+    @Override
+    public String toString() {
+        return "AnalyzedDataEntity{" + '\n' + '\n' +
+                "user_uid=" + user_uid + '\n' + '\n' +
+                "file_name=" + file_name + '\n' + '\n' +
+                "VAR_ENG=" + VAR_ENG + '\n' + '\n' +
+                "indents=" + indents + '\n' + '\n' +
+                "complex=" + complex + '\n' + '\n' +
+                "data_type=" + data_type + '\n' + '\n' +
+                "bad_inits=" + bad_inits + '\n' + '\n' +
+                "bad_pracs=" + bad_pracs + '\n' + '\n' +
+                "comments=" + comments + '\n' + '\n' +
+                "constructs=" + constructs + '\n' + '\n' +
+                "unreadables=" + unreadables + '\n' + '\n' +
+                "naming_convs=" + naming_convs + '\n' + '\n' +
+                "performance=" + performance + '\n' + '\n' +
+                "lmr=" + linemethodratio + '\n' + '\n' +
+                '}';
     }
 }

@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class FileEntity {
     @Id
     private String user_uid;
-    @Id
     private String file_name;
 
     private String file_type;
@@ -15,6 +14,7 @@ public class FileEntity {
     private Long file_size;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String file_content;
 
     private String file_lang;
@@ -29,18 +29,6 @@ public class FileEntity {
         this.file_size = fileSize;
         this.file_content = fileContent;
         this.file_lang = fileLang;
-    }
-
-    @Override
-    public String toString() {
-        return "FileEntity{" +
-                "user_uid='" + user_uid + '\'' +
-                ", file_name='" + file_name + '\'' +
-                ", file_type='" + file_type + '\'' +
-                ", file_size=" + file_size +
-                ", file_content='" + file_content + '\'' +
-                ", file_lang='" + file_lang + '\'' +
-                '}';
     }
 
     public String getUser_uid() {
