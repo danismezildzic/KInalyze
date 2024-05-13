@@ -43,8 +43,7 @@ public class CommentAnalyzer{
         rate = ((float) totalCount / (float) wholeCount) * 100;
         int intRate = (int) (rate * 100);
         rate =  (float) intRate / 100;
-        return String.format("count: %d \n", totalCount) + String.format("Whole count: %d \n", wholeCount) +
-                String.format("Rate: %d%%", Math.round(rate * 100) / 100);
+        return String.format("%d \n", totalCount);
     }
 
     private static int countChars(List<String> lines, boolean whole, String line){
